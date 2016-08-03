@@ -7,7 +7,11 @@ var five = require('johnny-five'),
 	})
 board.on('ready', ()=> {
 	var led = new five.Led('a5'),
-		rotary = new five.Sensor('a4')
+		rotary = new five.Sensor({
+			pin:'a4',
+			threshold:5,
+			frequency: 100
+		})
 
 	rotary.on('change', (value)=>{
 		led.brightness(value>>2)
